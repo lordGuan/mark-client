@@ -1,16 +1,10 @@
 <template>
   <div id="TopNav">
-    <el-col :span="2">
-      <div class="main-logo"></div>
-    </el-col>
-    <el-col :span="10">
-      <div class="main-search">
-        <el-input v-model="globalSearchKeyWord" placeholder="想看更多小伙伴的照片？" icon="search"></el-input>
-      </div>
-    </el-col>
-    <el-col :span="4" :offset="8">
-      <user-info></user-info>
-    </el-col>
+    <div class="main-logo"></div>
+    <div class="main-search">
+      <el-input v-model="globalSearchKeyWord" placeholder="想看更多小伙伴的照片？" icon="search"></el-input>
+    </div>
+    <user-info></user-info>
   </div>
 </template>
 
@@ -35,17 +29,22 @@
 
   #TopNav {
     background: @color-white;
+    position: relative;
     height: 110px;
 
     .main-logo {
       width: 116px;
       height: 110px;
       background: url(/static/images/main-logo.jpg);
+      position: absolute;
+      left: 0;
     }
 
     .main-search {
-      margin: 40px 40px;
+      margin: 35px 40px;
       width: 470px;
+      position: absolute;
+      left:116px;
       input {
         border-top: none;
         border-left: none;

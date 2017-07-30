@@ -29,7 +29,8 @@
   }
 
   body {
-    background: url(/static/images/main-bg.png) repeat-y;
+    background: url(/static/images/main-bg.png) repeat-y center top;
+    background-size: 100% 100%;
     min-width: 1366px;
   }
 

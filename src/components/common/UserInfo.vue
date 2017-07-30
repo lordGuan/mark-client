@@ -1,5 +1,5 @@
 <template>
-  <div id="UserInfo">
+  <div id="UserInfo" v-if="isLogin">
     <el-col :span="6">
       <div class="avatar">
         <img v-bind:src="userInfo.userAvatar">
@@ -19,6 +19,27 @@
       </div>
     </el-col>
   </div>
+  <div id="LoginInfo" v-else="isLogin">
+    <el-tabs v-model="defaultLoginMethod" @tab-click="handleClick">
+      <el-tab-pane label="扫码登录" name="qr-code-login">
+        <img src="/static/images/qr-login.jpg">
+        <p>手机钉钉扫描二维码登录</p>
+      </el-tab-pane>
+      <el-tab-pane label="密码登录" name="pwd-login">
+        <el-form ref="form" :model="loginForm">
+          <el-form-item>
+            <el-input placeholder="请输入手机号" type="text" v-model="loginForm.phone"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input placeholder="请输入密码" type="text" v-model="loginForm.pwd"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="login">登录</el-button>
+          </el-form-item>
+        </el-form>
+      </el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
 
 <script>
@@ -32,13 +53,29 @@
           userDept: '行政部',
           userCredit: 23333,
           userAvatar: './static/images/avatar.jpg'
+        },
+        isLogin: false,
+        defaultLoginMethod: 'pwd-login',
+        loginForm: {
+          phone: '',
+          pwd: ''
         }
+      }
+    },
+    methods: {
+      handleClick (tab, event) {
+        console.log(tab, event)
+      },
+      login () {
+
       }
     }
   }
 </script>
 
 <style lang="less">
+  @import '../../assets/less/common-variable';
+
   #UserInfo {
     height: 110px;
     padding: 30px 0;
@@ -57,6 +94,42 @@
 
     .basic-info {
       width: 120px;
+    }
+  }
+
+  #LoginInfo {
+    background: @color-login-background;
+    height: 336px;
+    width: 265px;
+    position: absolute;
+    right: 0;
+
+    .el-tabs {
+      height: 100%;
+      .el-tabs__header {
+        width: 176px;
+        margin: 20px auto;
+        text-align: center;
+      }
+      .el-tabs__nav {
+        height: 50px;
+        float: none;
+      }
+      .el-tabs__content {
+        .el-tab-pane {
+          margin: 25px 0;
+          form {
+            padding: 10px;
+            .el-input__inner {
+              border-radius: 0;
+              border-top: none;
+              border-left: none;
+              border-right: none;
+              background: @color-login-background;
+            }
+          }
+        }
+      }
     }
   }
 </style>
