@@ -25,7 +25,7 @@
 </script>
 
 <style lang="less">
-  @import "../../assets/less/common-variable";
+  @import "../../assets/less/common";
 
   #TopNav {
     background: @color-white;

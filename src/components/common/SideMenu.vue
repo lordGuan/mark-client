@@ -1,0 +1,39 @@
+<template>
+  <aside id="SideMenu">
+    <el-menu default-active="2" @open="handleOpen" @close="handleClose">
+      <el-menu-item index="2">首页</el-menu-item>
+      <el-menu-item index="3">我的智商</el-menu-item>
+    </el-menu>
+  </aside>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {}
+    },
+    methods: {
+      handleOpen (key, keyPath) {
+        console.log(key, keyPath)
+      },
+      handleClose (key, keyPath) {
+        console.log(key, keyPath)
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  #SideMenu {
+    width: 116px;
+    position: absolute;
+    left: 0;
+    top: 110px;
+    height: 100%;
+    ul {
+      border-radius: 0;
+      height: 100%;
+    }
+
+  }
+</style>

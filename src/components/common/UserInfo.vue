@@ -54,7 +54,7 @@
           userCredit: 23333,
           userAvatar: './static/images/avatar.jpg'
         },
-        isLogin: false,
+        isLogin: true,
         defaultLoginMethod: 'pwd-login',
         loginForm: {
           phone: '',
@@ -74,11 +74,13 @@
 </script>
 
 <style lang="less">
-  @import '../../assets/less/common-variable';
+  @import '../../assets/less/common';
 
   #UserInfo {
     height: 110px;
+    width: 265px;
     padding: 30px 0;
+    float: right;
     .el-col {
       height: 100%;
     }
