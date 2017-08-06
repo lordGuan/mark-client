@@ -17,7 +17,8 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "vue": "^2.3.3",
-    "vue-router": "^2.6.0"
+    "vue-router": "^2.6.0",
+    "vue-resource": "latest"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -61,7 +62,8 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "vue-resource": "latest"
   },
   "engines": {
     "node": ">= 4.0.0",

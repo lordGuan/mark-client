@@ -2,7 +2,7 @@
   <div id="TopNav">
     <div class="main-logo"></div>
     <div class="main-search">
-      <el-input v-model="globalSearchKeyWord" placeholder="想看更多小伙伴的照片？" icon="search"></el-input>
+      <el-input v-model="globalSearchKeyWord" @keyup.enter.native="doGlobalSearch" placeholder="想看更多小伙伴的照片？" icon="search"></el-input>
     </div>
     <user-info></user-info>
   </div>
@@ -19,6 +19,13 @@
     data () {
       return {
         globalSearchKeyWord: ''
+      }
+    },
+    methods:{
+      doGlobalSearch () {
+        if(this.globalSearchKeyWord){
+          alert(this.globalSearchKeyWord)
+        }
       }
     }
   }

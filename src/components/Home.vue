@@ -2,8 +2,10 @@
   <div id="Home">
     <div class="home-carousel">
       <el-carousel height="225px" :autoplay="false">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3>{{ item }}</h3>
+        <el-carousel-item v-for="item in latestActivities" :key="item.id">
+          <a :href="item.activityUrl">
+            <img :src="item.activityImg">
+          </a>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -34,7 +36,17 @@
   export default {
     name: 'Home',
     data () {
-      return {}
+      return {
+        latestActivities: []
+      }
+    },
+    mounted: function () {
+      this.$http.get('./static/json/getLatestActivities.json').then(response => {
+        console.log('success')
+        this.latestActivities = (JSON.parse(response.bodyText))
+      }, response => {
+        console.log('error' + response)
+      })
     }
   }
 </script>

@@ -6,11 +6,13 @@ import router from './router'
 // 使用iView
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-
 // 使用Element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource)
 Vue.use(iView)
 Vue.use(ElementUI)
 Vue.config.productionTip = false

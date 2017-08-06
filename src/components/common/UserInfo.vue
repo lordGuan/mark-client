@@ -31,7 +31,7 @@
             <el-input placeholder="请输入手机号" type="text" v-model="loginForm.phone"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input placeholder="请输入密码" type="text" v-model="loginForm.pwd"></el-input>
+            <el-input placeholder="请输入密码" type="password" v-model="loginForm.pwd"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="login">登录</el-button>
@@ -54,7 +54,7 @@
           userCredit: 23333,
           userAvatar: './static/images/avatar.jpg'
         },
-        isLogin: true,
+        isLogin: false,
         defaultLoginMethod: 'pwd-login',
         loginForm: {
           phone: '',
@@ -67,7 +67,11 @@
         console.log(tab, event)
       },
       login () {
+        if ( this.loginForm.phone === '18322693247' && this.loginForm.pwd === 'memeda' ) {
+          this.isLogin = true
+        } else {
 
+        }
       }
     }
   }
@@ -101,6 +105,7 @@
 
   #LoginInfo {
     background: @color-login-background;
+    z-index: 999;
     height: 336px;
     width: 265px;
     position: absolute;
