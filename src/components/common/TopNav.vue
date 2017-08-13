@@ -53,10 +53,7 @@
       position: absolute;
       left:116px;
       input {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-radius: 0;
+        .input-fix
       }
     }
   }

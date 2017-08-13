@@ -1,19 +1,22 @@
 <template>
   <div id="app">
     <TopNav></TopNav>
-    <!-- <div class=""> -->
-      <SideMenu></SideMenu>
-      <router-view></router-view>
-    <!-- </div> -->
+    <SideMenu></SideMenu>
+    <router-view></router-view>
+    <RightBar></RightBar>
+    <BottomBanner></BottomBanner>
   </div>
 </template>
 
 <script>
   import TopNav from './components/common/TopNav.vue'
   import SideMenu from './components/common/SideMenu.vue'
+  import RightBar from './components/common/RightBar.vue'
+  import BottomBanner from './components/common/BottomBanner.vue'
+
   export default {
     name: 'app',
-    components: { TopNav, SideMenu }
+    components: { TopNav, SideMenu, RightBar, BottomBanner }
   }
 </script>
 
@@ -29,7 +32,7 @@
   }
 
   body {
-    background: url(/static/images/main-bg.png) no-repeat center top;
+    background: url(/static/images/main-bg.jpg) center top;
     background-size: 100% 100%;
     min-width: 1366px;
   }
@@ -42,7 +45,6 @@
     -moz-osx-font-smoothing: grayscale;
     width: 1366px;
     height: 100%;
-    overflow: hidden;
     text-align: center;
     color: @font-color;
   }

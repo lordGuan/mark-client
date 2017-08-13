@@ -54,7 +54,7 @@
           userCredit: 23333,
           userAvatar: './static/images/avatar.jpg'
         },
-        isLogin: false,
+        isLogin: true,
         defaultLoginMethod: 'pwd-login',
         loginForm: {
           phone: '',
@@ -128,10 +128,7 @@
           form {
             padding: 10px;
             .el-input__inner {
-              border-radius: 0;
-              border-top: none;
-              border-left: none;
-              border-right: none;
+              .input-fix;
               background: @color-login-background;
             }
           }
