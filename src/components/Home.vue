@@ -38,7 +38,7 @@
   #Home {
     margin-left: 116px;
     background: @color-main-background;
-    height: 100%;
+    height: 854px;
     width: 985px;
     .home-carousel {
       width: 985px;

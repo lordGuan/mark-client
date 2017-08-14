@@ -29,10 +29,14 @@
     position: absolute;
     left: 0;
     top: 110px;
-    height: 100%;
+    height: 1112px;
     ul {
+      background: #121921;
       border-radius: 0;
       height: 100%;
+      .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active{
+        color: #ff0084;
+      }
     }
 
   }

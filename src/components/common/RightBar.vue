@@ -43,6 +43,20 @@
         </el-form>
       </div>
     </div>
+    <div class="news-board">
+      <div class="header-title">
+        <span class="title">最新公告</span>
+        <el-button type="primary" size="mini">更多</el-button>
+      </div>
+      <div class="content-list">
+        <ul>
+          <li><a><i class="el-icon-star-on"></i>积分系统1.0上线</a></li>
+          <li><a><i class="el-icon-star-on"></i>欢迎大家留言板留言</a></li>
+          <li><a><i class="el-icon-star-on"></i>第三条</a></li>
+          <li><a><i class="el-icon-star-on"></i>第四条</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -60,7 +74,7 @@
     },
     methods: {
       doSendMessage: function () {
-        this.messageList.push(this.message);
+        this.messageList.push(this.message)
       }
     },
     mounted: function () {
@@ -169,6 +183,34 @@
           margin-top: 10px;
           .el-checkbox__label {
             font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .news-board {
+      height: 258px;
+      padding: 0 20px;
+      .header-title {
+        padding-top: 20px;
+        .title {
+          display: inline-block;
+          width: 180px;
+          text-align: left;
+          font-size: 20px;
+          color: #7fb1ed
+        }
+      }
+      .content-list {
+        text-align: left;
+        li {
+          padding-top: 5px;
+          color: #7fb1ed;
+          a {
+            font-size: 14px;
+            i {
+              margin-right: 5px;
+            }
           }
         }
       }
