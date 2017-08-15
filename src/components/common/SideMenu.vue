@@ -1,8 +1,8 @@
 <template>
   <aside id="SideMenu">
-    <el-menu default-active="2" @open="handleOpen" @close="handleClose">
-      <el-menu-item index="2">首页</el-menu-item>
-      <el-menu-item index="3">我的智商</el-menu-item>
+    <el-menu :router="true" default-active="/" @open="handleOpen" @close="handleClose">
+      <el-menu-item index="/">首页</el-menu-item>
+      <el-menu-item index="/profile">我的智商</el-menu-item>
     </el-menu>
   </aside>
 </template>

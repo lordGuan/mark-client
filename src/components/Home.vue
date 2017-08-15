@@ -1,5 +1,5 @@
 <template>
-  <div id="Home">
+  <div id="Home" class="content-wrap">
     <div class="home-carousel">
       <el-carousel height="225px" :autoplay="false">
         <el-carousel-item v-for="item in latestActivities" :key="item.id">
@@ -36,10 +36,7 @@
   @import "../assets/less/common";
 
   #Home {
-    margin-left: 116px;
-    background: @color-main-background;
-    height: 854px;
-    width: 985px;
+
     .home-carousel {
       width: 985px;
       display: inline-block;
