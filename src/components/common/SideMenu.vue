@@ -3,6 +3,7 @@
     <el-menu :router="true" default-active="/" @open="handleOpen" @close="handleClose">
       <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="/profile">我的智商</el-menu-item>
+      <el-menu-item index="/participation">我的参与</el-menu-item>
     </el-menu>
   </aside>
 </template>

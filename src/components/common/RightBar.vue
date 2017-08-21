@@ -189,7 +189,7 @@
     }
 
     .news-board {
-      height: 258px;
+      height: 210px;
       padding: 0 20px;
       .header-title {
         padding-top: 20px;

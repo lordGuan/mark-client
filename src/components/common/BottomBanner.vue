@@ -34,7 +34,7 @@
     margin-left: 116px;
     background: url("/static/images/od-index/od-bg.jpg") no-repeat top center;
     width: 985px;
-    height: 258px;
+    height: 210px;
     padding: 20px;
     .header-title {
       color: #FFFFFF;
@@ -50,6 +50,7 @@
       text-align: left;
       margin-top: 65px;
       li {
+        text-align: center;
         &:first-child {
           margin-left: 0;
         }
@@ -63,6 +64,7 @@
           width: 100%;
         }
         a {
+          color: #ffffff;
           width: 100%;
         }
       }

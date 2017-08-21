@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Profile from '@/components/Profile'
+import Home from '@/components/Home.vue'
+import Profile from '@/components/pages/Profile.vue'
+import Participation from '@/components/pages/Participation.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile
+    },
+    {
+      path: '/participation',
+      name: 'Participation',
+      component: Participation
     }
   ]
 })
