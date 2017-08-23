@@ -54,7 +54,7 @@
           userCredit: 23333,
           userAvatar: './static/images/avatar.jpg'
         },
-        isLogin: true,
+        isLogin: false,
         defaultLoginMethod: 'pwd-login',
         loginForm: {
           phone: '',
@@ -67,8 +67,12 @@
         console.log(tab, event)
       },
       login () {
-        if ( this.loginForm.phone === '18322693247' && this.loginForm.pwd === 'memeda' ) {
+        if ( this.loginForm.phone === '1' && this.loginForm.pwd === '1' ) {
           this.isLogin = true
+          this.$http.get('./static/json/userLogin.json').then(response=>{
+            console.log('clerk login success')
+            this.$store.commit('userLogin', JSON.parse(response.bodyText))
+          })
         } else {
 
         }

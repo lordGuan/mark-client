@@ -1,9 +1,9 @@
 <template>
   <aside id="SideMenu">
     <el-menu :router="true" default-active="/" @open="handleOpen" @close="handleClose">
-      <el-menu-item index="/">首页</el-menu-item>
-      <el-menu-item index="/profile">我的智商</el-menu-item>
-      <el-menu-item index="/participation">我的参与</el-menu-item>
+      <el-menu-item v-for="(menu, index) in userMenu" :key="index" :index="menu.route">{{ menu.name }}</el-menu-item>
+      <!--<el-menu-item index="/profile">我的智商</el-menu-item>-->
+      <!--<el-menu-item index="/participation">我的参与</el-menu-item>-->
     </el-menu>
   </aside>
 </template>
@@ -19,6 +19,11 @@
       },
       handleClose (key, keyPath) {
         console.log(key, keyPath)
+      }
+    },
+    computed: {
+      userMenu () {
+        return this.$store.state.userMenu
       }
     }
   }
