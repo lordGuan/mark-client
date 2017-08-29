@@ -45,10 +45,10 @@
 <script>
   export default {
     name: 'UserInfo',
-    data () {
+    data() {
       return {
         userInfo: {
-          userId: 10001,
+          userId: 0,
           userName: '张全蛋',
           userDept: '行政部',
           userCredit: 23333,
@@ -63,19 +63,23 @@
       }
     },
     methods: {
-      handleClick (tab, event) {
+      handleClick(tab, event) {
         console.log(tab, event)
       },
-      login () {
-        if ( this.loginForm.phone === '1' && this.loginForm.pwd === '1' ) {
-          this.isLogin = true
-          this.$http.get('./static/json/userLogin.json').then(response=>{
-            console.log('clerk login success')
-            this.$store.commit('userLogin', JSON.parse(response.bodyText))
-          })
-        } else {
+      login() {
+        this.$http.put('http://localhost:8004/users/login', {
+            name: this.loginForm.phone,
+            password: this.loginForm.pwd
+          }, {
+            headers: {
+              uid: ''
+            }
+          }
+        ).then(response => {
+          this.isLogin = true;
+          console.log(response.bodyText)
+        })
 
-        }
       }
     }
   }
