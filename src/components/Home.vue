@@ -14,20 +14,26 @@
 </template>
 
 <script>
+  import {mapState, mapActions} from 'vuex'
+
   export default {
     name: 'Home',
-    data () {
-      return {
-        latestActivities: []
-      }
+    data() {
+      return {}
     },
-    mounted: function () {
-      this.$http.get('./static/json/getLatestActivities.json').then(response => {
-        console.log('success')
-        this.latestActivities = (JSON.parse(response.bodyText))
-      }, response => {
-        console.log('error' + response)
+    created() {
+      this.getLatestActivities()
+    }
+    ,
+    computed: {
+      ...mapState({
+        latestActivities: ({home}) => home.latestActivities
       })
+    },
+    methods: {
+      ...mapActions([
+        'getLatestActivities'
+      ])
     }
   }
 </script>

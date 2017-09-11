@@ -9,25 +9,20 @@ import 'iview/dist/styles/iview.css'
 // 使用Element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import store from './vuex'
 
-// 使用vuex
-import vuex from 'vuex'
-import store from './vuex/store'
+import moment from 'moment'
+import VueMoment from 'vue-momentjs'
 
-// 使用vue-resource
-import VueResource from 'vue-resource'
-
-Vue.use(VueResource)
 Vue.use(iView)
 Vue.use(ElementUI)
-Vue.use(vuex)
+Vue.use(VueMoment, moment)
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: {App}
 })

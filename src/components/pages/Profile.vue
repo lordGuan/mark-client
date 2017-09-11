@@ -7,22 +7,22 @@
             <el-col :span="8">
               <img src="/static/images/profile/xidada.jpg" width="280px">
             </el-col>
-            <el-col :span="16">
-              <el-form>
+            <el-col :span="8">
+              <el-form :label-position="labelPosition" class="demo-table-expand">
                 <el-form-item label="姓名">
-                  <span>某某某</span>
+                  <span>{{userInfo.name}}</span>
                 </el-form-item>
                 <el-form-item label="司龄">
-                  <span>5年</span>
+                  <span>{{userInfo.companyAge > 0 ? (userInfo.companyAge + '年') : '不足一年'}}</span>
                 </el-form-item>
                 <el-form-item label="入职时间">
-                  <span>2017年08月15日</span>
+                  <span>{{this.$moment(userInfo.registerTime).format('YYYY年MM月DD日')}}</span>
                 </el-form-item>
                 <el-form-item label="基础积分">
-                  <span>5*1000</span>
+                  <span>{{userInfo.mark + '分'}}</span>
                 </el-form-item>
                 <el-form-item label="俱乐部管理">
-                  <span>健身房教练</span>
+                  <span>{{userInfo.primarySector}}</span>
                 </el-form-item>
               </el-form>
             </el-col>
@@ -30,23 +30,19 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-row>
-      <el-col :span="12" >
+    <el-row :gutter="20">
+      <el-col :span="12">
         <el-card id="my-credits" class="box-card">
           <div slot="header" class="clearfix">
             <el-row type="flex" justify="space-between">
-                <span class="title">我的智商</span>
-                <el-button type="primary" size="mini">智商兑换</el-button>
+              <span class="title">我的智商</span>
+              <el-button type="primary" size="mini">智商兑换</el-button>
             </el-row>
           </div>
           <div class="credits">
-              10000
+            {{userInfo.mark + '分'}}
           </div>
         </el-card>
-      </el-col>
-    </el-row>
-    <el-row type="flex" justify="space-between">
-      <el-col :span="12">
         <el-card id="credits-info" class="box-card">
           <div slot="header" class="clearfix">
             <el-row type="flex" justify="space-between">
@@ -73,7 +69,7 @@
           </el-table>
         </el-card>
       </el-col>
-      <el-col :span="11">
+      <el-col :span="12">
         <el-card id="credits-rules" class="box-card">
           <div slot="header" class="clearfix">
             <el-row type="flex" justify="space-between">
@@ -87,8 +83,10 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default {
-    data () {
+    data() {
       return {
         tableData: [{
           date: '2016-05-02',
@@ -106,10 +104,23 @@
           date: '2016-05-03',
           content: '抽烟喝酒',
           credits: '-100'
-        }]
+        }],
+        labelPosition: 'left'
       }
     },
-    methods: {}
+    methods: {},
+    computed: {
+      ...mapState({
+        // 这里不要使用箭头函数，因为要使用moment
+        userInfo: function ({user}) {
+          let now = this.$moment()
+          let userInfo = user.userInfo
+          userInfo.companyAge = now.diff(userInfo.registerTime, 'years')
+          return userInfo
+        }
+      }),
+
+    }
   }
 </script>
 
@@ -119,16 +130,31 @@
     .box-card {
       margin-bottom: 15px;
     }
-    .el-card__header{
+    .el-card__header {
       border-bottom: none;
       border-left: 4px solid #4db3ff;
       padding: 7px 10px;
-      .title{
-        font-size:18px
+      .title {
+        font-size: 18px
       }
     }
     .el-card__body {
       padding: 7px 10px;
+    }
+
+    #main-info {
+      text-align: left;
+      .demo-table-expand {
+        font-size: 0;
+        label {
+          width: 120px;
+          color: #99a9bf;
+        }
+        .el-form-item {
+          margin-right: 0;
+          width: 80%;
+        }
+      }
     }
 
     #my-credits {
@@ -139,10 +165,11 @@
         color: #4db3ff
       }
     }
-    #credits-info{
+    #credits-info {
       .cell {
         text-align: left;
       }
     }
+
   }
 </style>

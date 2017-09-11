@@ -1,5 +1,5 @@
 <template>
-  <div id="UserInfo" v-if="isLogin">
+  <div id="UserInfo" v-if="userInfo.uid">
     <el-col :span="6">
       <div class="avatar">
         <img v-bind:src="userInfo.userAvatar">
@@ -7,19 +7,19 @@
     </el-col>
     <el-col :span="12">
       <div class="basic-info">
-        {{ userInfo.userDept + '-' + userInfo.userName }}<br>
-        {{ userInfo.userCredit + '智商' }}
+        {{ userInfo.name + '-' + userInfo.primarySector }}<br>
+        {{ userInfo.mark + '智商' }}
       </div>
     </el-col>
     <el-col :span="4">
       <div class="user-config">
-        <a href="javascript:">
+        <a href="javascript:" @click="logout">
           <i class="el-icon-setting"></i>
         </a>
       </div>
     </el-col>
   </div>
-  <div id="LoginInfo" v-else="isLogin">
+  <div id="LoginInfo" v-else="userInfo.uid">
     <el-tabs v-model="defaultLoginMethod" @tab-click="handleClick">
       <el-tab-pane label="扫码登录" name="qr-code-login">
         <img src="/static/images/qr-login.jpg">
@@ -28,10 +28,10 @@
       <el-tab-pane label="密码登录" name="pwd-login">
         <el-form ref="form" :model="loginForm">
           <el-form-item>
-            <el-input placeholder="请输入手机号" type="text" v-model="loginForm.phone"></el-input>
+            <el-input placeholder="请输入手机号" type="text" v-model="loginForm.name"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input placeholder="请输入密码" type="password" v-model="loginForm.pwd"></el-input>
+            <el-input placeholder="请输入密码" type="password" v-model="loginForm.password"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="login">登录</el-button>
@@ -43,42 +43,48 @@
 </template>
 
 <script>
+  import {mapState, mapActions} from 'vuex'
+
   export default {
     name: 'UserInfo',
     data() {
       return {
-        userInfo: {
-          userId: 0,
-          userName: '张全蛋',
-          userDept: '行政部',
-          userCredit: 23333,
-          userAvatar: './static/images/avatar.jpg'
-        },
         isLogin: false,
         defaultLoginMethod: 'pwd-login',
         loginForm: {
-          phone: '',
-          pwd: ''
-        }
+          name: '',
+          password: ''
+        },
+        today: ''
       }
     },
+    computed: {
+      ...mapState({
+        userInfo: ({user}) => user.userInfo
+      })
+    },
     methods: {
+      ...mapActions([
+        'doUserLogin',
+        'doUserLogout'
+      ]),
       handleClick(tab, event) {
         console.log(tab, event)
       },
       login() {
-        this.$http.put('http://localhost:8004/users/login', {
-            name: this.loginForm.phone,
-            password: this.loginForm.pwd
-          }, {
-            headers: {
-              uid: ''
-            }
-          }
-        ).then(response => {
-          this.isLogin = true;
-          console.log(response.bodyText)
-        })
+        // TODO 校验用户填写的内容是否齐全
+        this.doUserLogin(this.loginForm)
+      },
+      logout() {
+        this.doUserLogout()
+        this.$router.push('/')
+      }
+    },
+    created() {
+
+    },
+    watch: {
+      userInfo(oldVal, currentVal) {
 
       }
     }

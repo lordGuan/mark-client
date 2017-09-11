@@ -9,22 +9,24 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default {
-    data () {
+    data() {
       return {}
     },
     methods: {
-      handleOpen (key, keyPath) {
+      handleOpen(key, keyPath) {
         console.log(key, keyPath)
       },
-      handleClose (key, keyPath) {
+      handleClose(key, keyPath) {
         console.log(key, keyPath)
       }
     },
     computed: {
-      userMenu () {
-        return this.$store.state.userMenu
-      }
+      ...mapState({
+        userMenu: ({ user }) => user.userMenu,
+      })
     }
   }
 </script>
@@ -40,7 +42,7 @@
       background: #121921;
       border-radius: 0;
       height: 100%;
-      .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active{
+      .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active {
         color: #ff0084;
       }
     }

@@ -5,7 +5,9 @@
         <ul class="detail">
           <li><i class="el-icon-time font-32"></i></li>
           <li><span class="font-18">智商变动</span></li>
-          <li><span>2017.8.1</span><span>+300</span></li>
+          <!--<li v-for="(change, index) in latestMarkChange" :key="index">-->
+          <!--<span>{{change.time}}</span><span>{{change.after}}</span>-->
+          <!--</li>-->
           <li><span>2017.8.1</span><span>+300</span></li>
           <li><span>2017.8.1</span><span>+300</span></li>
         </ul>
@@ -24,13 +26,13 @@
       <div class="header-title">留言板</div>
       <div class="content-list">
         <ul>
-          <li v-for="message in messageList" :key="message.id">
+          <li v-for="message in latestMessageBoard" :key="message.id">
             <div class="content-avatar">
               <img src="/static/images/avatar.jpg">
             </div>
             <div class="content-message">
-              <span class="message-user">{{message.user == '' ? '匿名' : message.user}}</span>
-              <p>{{message.message}}</p>
+              <span class="message-user">{{message.name == '' ? '匿名' : message.name}}</span>
+              <p>{{message.content}}</p>
             </div>
           </li>
         </ul>
@@ -61,8 +63,10 @@
 </template>
 
 <script>
+  import {mapState, mapActions} from 'vuex'
+
   export default {
-    data () {
+    data() {
       return {
         message: {
           user: '',
@@ -72,18 +76,22 @@
         messageList: []
       }
     },
+    created() {
+      this.getLatestMessageBoard()
+    },
+    computed: {
+      ...mapState({
+        latestMarkChange: ({mark}) => mark.latestMarkChange,
+        latestMessageBoard: ({extra}) => extra.latestMessageBoard
+      })
+    },
     methods: {
+      ...mapActions([
+        'getLatestMessageBoard'
+      ]),
       doSendMessage: function () {
         this.messageList.push(this.message)
       }
-    },
-    mounted: function () {
-      this.$http.get('./static/json/getLatestMessageBoard.json').then(response => {
-        console.log('success')
-        this.messageList = (JSON.parse(response.bodyText))
-      }, response => {
-        console.log('error' + response)
-      })
     }
   }
 </script>

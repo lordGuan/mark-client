@@ -1,0 +1,14 @@
+[
+  {
+    "activityId": 1,
+    "activityName": "OpenDay",
+    "activityUrl": "/activity/openday1",
+    "activityImg": "./static/images/activity/activity-openday.jpg"
+  },
+  {
+    "activityId": 2,
+    "activityName": "OpenDay",
+    "activityUrl": "/activity/openday2",
+    "activityImg": "./static/images/activity/activity-openday.jpg"
+  }
+]
